@@ -1,5 +1,5 @@
 
-module.exports = (api, opts) => {
+module.exports = (api, options) => {
 
     api.extendPackage({
         dependencies: {
@@ -7,8 +7,15 @@ module.exports = (api, opts) => {
         }
     });
 
+    api.extendPackage({
+        scripts: {
+            zip: 'vue-cli-service greet'
+        }
+    })
 
-    api.render('./template')
+    api.render('./template', {
+        ...options,
+    });
 
 
 
