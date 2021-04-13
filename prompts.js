@@ -1,3 +1,4 @@
+//options for the generator
 module.exports = [
     {
       type: 'input',
@@ -5,5 +6,5 @@ module.exports = [
       message: 'Select prefix',
       default: 'xx',
     }
-    
+
   ]
