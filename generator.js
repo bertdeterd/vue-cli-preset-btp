@@ -12,7 +12,7 @@ async function run (api, command) {
         VUE_CLI_SKIP_DIRTY_GIT_PROMPT: true,
       }
     }, stderr => Promise.resolve({ stderr }))
-  } catch (e) { /* */ }
+  } catch (e) { console.log(e) }
 
   return subprocess
 }

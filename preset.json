@@ -7,6 +7,9 @@
             "lintOn": [
                 "save"
             ]
+        },
+        "vue-cli-plugin-vuetify":{
+            "preset": "default"
         }
     },
     "vueVersion": "2"
