@@ -1,1 +1,16 @@
-{}
+{
+    "welcomeFile": "/index.html",
+    "routes": [
+      {
+        "source": "/api/sap/(.*)",
+        "target": "/sap/$1",
+        "destination": "<DESTINATION TO YOUR BACKEND>"
+      },
+      {
+        "source": "^(.*)",
+        "target": "$1",
+        "authenticationType": "xsuaa",
+        "service": "html5-apps-repo-rt"
+      }
+    ]
+  }
