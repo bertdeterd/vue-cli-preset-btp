@@ -3,7 +3,7 @@ module.exports = (api, opts) => {
 
     api.extendPackage({
         dependencies: {
-            'saprfc': 'latest'
+            'saprfc': '^1.1.3'
         }
     });
 
