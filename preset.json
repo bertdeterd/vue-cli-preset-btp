@@ -9,7 +9,7 @@
             ]
         },
         "vue-cli-plugin-vuetify":{
-            "preset": "default"
+            "prompts": true
         }
     },
     "vueVersion": "2"
