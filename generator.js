@@ -23,18 +23,6 @@ module.exports = (api, { preset = 'base' }) => {
     //const projectName = api.rootOptions.projectName
     let subprocess
 
-    try {
-      subprocess = await run(api, `vue add vuetify`)
-    } catch (err) {
-      console.warn(err)
-    }
-
-    if (!subprocess) {
-      return console.error(`Unable to add preset ${preset}.`)
-    }
-
-    subprocess.stdout.on('close', async () => {
-      console.log(`🍣  Successfully generated.\n`)
-    })
+   console.log(' Created!!!!')
   })
 }
