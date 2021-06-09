@@ -2,6 +2,9 @@
 module.exports = (api, options) => {
 
     api.extendPackage({
+        config: {
+            "mtarname": "webapp"
+        },
         dependencies: {
             'saprfc': '^1.1.3'
         }
@@ -9,8 +12,9 @@ module.exports = (api, options) => {
 
     api.extendPackage({
         scripts: {
-           
-            "build:mta": "mbt build -t ./"
+            "build:mta": "mbt build -t ./",
+            "deploy:mta": "cf7 deploy ",
+            "zip": "cd dist/ && bestzip ../mta/resources/uimodule.zip *"
         }
     })
 

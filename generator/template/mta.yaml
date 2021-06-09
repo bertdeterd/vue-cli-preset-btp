@@ -45,12 +45,12 @@ modules:
     parameters:
       content-target: true
   build-parameters:
-    build-result: resources
+    build-result: mta/resources
     requires:
-    - artifacts:
+    - name: uimodule
+      artifacts:
       - uimodule.zip
-      name: uimodule
-      target-path: resources/
+      target-path: mta/resources/
 
 - name: uimodule
   type: html5
