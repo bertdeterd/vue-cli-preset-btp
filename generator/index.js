@@ -9,7 +9,8 @@ module.exports = (api, options) => {
 
     api.extendPackage({
         scripts: {
-            zip: 'vue-cli-service greet'
+           
+            "build:mta": "mbt build -t ./"
         }
     })
 
