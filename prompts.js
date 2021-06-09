@@ -11,6 +11,12 @@ module.exports = [
     name: 'appservice',
     message: 'SAP Cloud service',
     default: 'cloudwf',
+  },
+  {
+    type: 'input',
+    name: 'apidestination',
+    message: 'Destination',
+    default: 'SAP_HTTPS_EJ_BA'
   }
  
 
