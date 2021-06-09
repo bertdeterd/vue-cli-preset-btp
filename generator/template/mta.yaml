@@ -61,6 +61,7 @@ modules:
     commands:
     - npm install
     - npm run build
+    - npm run zip
     supported-platforms: []
 
 
