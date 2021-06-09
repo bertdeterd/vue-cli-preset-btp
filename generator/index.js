@@ -14,7 +14,9 @@ module.exports = (api, options) => {
         scripts: {
             "build:mta": "mbt build -t ./",
             "deploy:mta": "cf7 deploy ",
-            "zip": "cd dist/ && bestzip ../mta/resources/uimodule.zip *"
+            "zip": "cd dist/ && bestzip ../mta/resources/uimodule.zip *",
+            "html5-list": "cf7 html5-list",
+            "html5-list-with-url": "cf7 html5-list -d -rt launchpad -u"
         }
     })
 
