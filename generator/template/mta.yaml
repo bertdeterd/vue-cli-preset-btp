@@ -1,103 +1,82 @@
 _schema-version: "3.2"
 ID: btp-wf-taskui
 version: 0.0.1
+
+
+parameters:
+  deploy_mode: html5-repo
+  appname: <%= appname %>
+  appservice: <%= appservice %>
+
 modules:
-- name: btp-wf-taskui-destination-content
+- name: destination-content
   type: com.sap.application.content
   requires:
-  - name: btp-wf-taskui-destination-service
-    parameters:
-      content-target: true
-  - name: btp-wf-taskui_html_repo_host
+  - name: html_repo_host
     parameters:
       service-key:
-        name: btp-wf-taskui_html_repo_host-key
-  - name: uaa_btp-wf-taskui
+        name: ${appname}_html_repo_host-key
+  - name: uaa
     parameters:
       service-key:
-        name: uaa_btp-wf-taskui-key
+        name: ${appname}_uaa-key
   parameters:
     content:
       subaccount:
         destinations:
-        - Name: cloudwf_demo_btp_wf_taskui_html_repo_host
-          ServiceInstanceName: btp-wf-taskui-html5-app-host-service
-          ServiceKeyName: btp-wf-taskui_html_repo_host-key
-          sap.cloud.service: cloudwf-demo
+        - Name: ${appname}_html_repo_host_dst
+          ServiceInstanceName: ${appname}_html_repo_host
+          ServiceKeyName: ${appname}_html_repo_host-key
+          sap.cloud.service: ${appservice}
         - Authentication: OAuth2UserTokenExchange
-          Name: cloudwf_demo_uaa_btp_wf_taskui
-          ServiceInstanceName: btp-wf-taskui-xsuaa-service
-          ServiceKeyName: uaa_btp-wf-taskui-key
-          sap.cloud.service: cloudwf-demo
+          Name: ${appname}_uaa_dst
+          ServiceInstanceName: ${appname}_uaa
+          ServiceKeyName: ${appname}_uaa-key
+          sap.cloud.service: ${appservice}
         existing_destinations_policy: ignore
   build-parameters:
     no-source: true
-- name: wfdemo-module
-  type: com.sap.application.content
-  path: wfdemo-module
-  requires:
-  - name: workflow_mta
-    parameters:
-      content-target: true
-- name: btp-wf-taskui-app-content
+
+- name: app-content
   type: com.sap.application.content
   path: .
   requires:
-  - name: btp-wf-taskui_html_repo_host
+  - name: html_repo_host
     parameters:
       content-target: true
   build-parameters:
     build-result: resources
     requires:
     - artifacts:
-      - demotaskmodule.zip
-      name: demotaskmodule
+      - uimodule.zip
+      name: uimodule
       target-path: resources/
-- name: demotaskmodule
+
+- name: uimodule
   type: html5
-  path: demotask-module
+  path: .
   build-parameters:
     build-result: dist
     builder: custom
     commands:
     - npm install
-    - npm run build:cf
+    - npm run build
     supported-platforms: []
+
+
 resources:
-- name: btp-wf-taskui-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
-      version: 1.0.0
-    service: destination
-    service-name: btp-wf-taskui-destination-service
-    service-plan: lite
-- name: btp-wf-taskui_html_repo_host
+
+- name: html_repo_host
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
-    service-name: btp-wf-taskui-html5-app-host-service
+    service-name: ${appname}_html_repo_host
     service-plan: app-host
-- name: uaa_btp-wf-taskui
+
+- name: uaa
   type: org.cloudfoundry.managed-service
   parameters:
     path: ./xs-security.json
     service: xsuaa
-    service-name: btp-wf-taskui-xsuaa-service
+    service-name: ${appname}_uaa
     service-plan: application
-- name: workflow_mta
-  type: org.cloudfoundry.existing-service
-  parameters:
-    service-name: workflow
-parameters:
-  deploy_mode: html5-repo

@@ -2,9 +2,16 @@
 module.exports = [
   {
     type: 'input',
-    name: 'namespace',
-    message: 'Select namespace',
-    default: 'xx',
+    name: 'appname',
+    message: 'Short name',
+    default: 'mytask',
+  },
+  {
+    type: 'input',
+    name: 'appservice',
+    message: 'SAP Cloud service',
+    default: 'cloudwf',
   }
+ 
 
 ]
