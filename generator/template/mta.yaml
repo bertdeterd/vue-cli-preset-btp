@@ -4,7 +4,6 @@ version: 0.0.1
 
 
 parameters:
-  deploy_mode: html5-repo
   appname: <%= appname %>
   appservice: <%= appservice %>
 
