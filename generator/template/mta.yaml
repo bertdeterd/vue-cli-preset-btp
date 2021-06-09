@@ -37,7 +37,7 @@ modules:
   build-parameters:
     no-source: true
 
-- name: app-content
+- name: webapp_deployer
   type: com.sap.application.content
   path: .
   requires:
@@ -47,12 +47,12 @@ modules:
   build-parameters:
     build-result: mta/resources
     requires:
-    - name: uimodule
+    - name: webapp
       artifacts:
       - uimodule.zip
       target-path: mta/resources/
 
-- name: uimodule
+- name: webapp
   type: html5
   path: .
   build-parameters:
