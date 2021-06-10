@@ -91,6 +91,10 @@ resources:
   type: org.cloudfoundry.managed-service
   parameters:
     path: ./xs-security.json
+    config:
+      xsappname: "${default-xsappname}"
     service: xsuaa
     service-name: ${appname}_uaa
     service-plan: application
+
+       
