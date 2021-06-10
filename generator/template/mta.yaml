@@ -70,7 +70,6 @@ modules:
 
 resources:
 
-
 - name: mta_destination
   type: org.cloudfoundry.managed-service
   parameters:
