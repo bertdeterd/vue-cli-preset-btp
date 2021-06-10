@@ -74,6 +74,9 @@ resources:
 - name: mta_destination
   type: org.cloudfoundry.managed-service
   parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
     service: destination
     service-name: ${appname}_destination_srv
     service-plan: lite    
