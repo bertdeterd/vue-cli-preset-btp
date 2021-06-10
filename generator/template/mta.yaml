@@ -1,9 +1,10 @@
 _schema-version: "3.2"
-ID: btp-wf-taskui
+ID: <%= appservice %>-<%= appname %>-mta
 version: 0.0.1
 
 
 parameters:
+  deploy_mode: html5-repo
   appname: <%= appname %>
   appservice: <%= appservice %>
 

@@ -12,8 +12,8 @@ module.exports = (api, options) => {
 
     api.extendPackage({
         scripts: {
-            "build:mta": "mbt build -t ./",
-            "deploy:mta": "cf7 deploy ",
+            "build:mta": "mbt build -p=cf -t ./mta/archives --mtar mybundle.mtar",
+            "deploy:mta": "cf7 deploy mta/archives/mybundle.mtar",
             "zip": "cd dist/ && bestzip ../mta/resources/uimodule.zip *",
             "html5-list": "cf7 html5-list",
             "html5-list-with-url": "cf7 html5-list -d -rt launchpad -u"
