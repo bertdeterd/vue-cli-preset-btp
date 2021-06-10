@@ -44,7 +44,7 @@ modules:
   type: com.sap.application.content
   path: .
   requires:
-  - name: html_repo_host
+  - name: mta_htmlrepo
     parameters:
       content-target: true
   build-parameters:
