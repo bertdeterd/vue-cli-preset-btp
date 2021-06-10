@@ -9,14 +9,17 @@ parameters:
   appservice: <%= appservice %>
 
 modules:
-- name: destination-content
+- name: webapp_destination_content
   type: com.sap.application.content
   requires:
-  - name: html_repo_host
+  - name: mta_destination
+    parameters:
+      content-target: true    
+  - name: mta_htmlrepo
     parameters:
       service-key:
         name: ${appname}_html_repo_host-key
-  - name: uaa
+  - name: mta_uaa
     parameters:
       service-key:
         name: ${appname}_uaa-key
@@ -33,7 +36,7 @@ modules:
           ServiceInstanceName: ${appname}_uaa
           ServiceKeyName: ${appname}_uaa-key
           sap.cloud.service: ${appservice}
-        existing_destinations_policy: ignore
+        existing_destinations_policy: update
   build-parameters:
     no-source: true
 
@@ -67,14 +70,22 @@ modules:
 
 resources:
 
-- name: html_repo_host
+
+- name: mta_destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-name: ${appname}_destination_srv
+    service-plan: lite    
+
+- name: mta_htmlrepo
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
     service-name: ${appname}_html_repo_host
     service-plan: app-host
 
-- name: uaa
+- name: mta_uaa
   type: org.cloudfoundry.managed-service
   parameters:
     path: ./xs-security.json
